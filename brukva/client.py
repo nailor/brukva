@@ -685,11 +685,13 @@ class Client(object):
     def ltrim(self, key, start, end, callbacks=None):
         self.execute_command('LTRIM', callbacks, key, start, end)
 
-    def lpush(self, key, value, callbacks=None):
-        self.execute_command('LPUSH', callbacks, key, value)
+    def lpush(self, key, *values, **kwargs):
+        callbacks = kwargs.pop('callbacks', None)
+        self.execute_command('LPUSH', callbacks, key, *values)
 
-    def rpush(self, key, value, callbacks=None):
-        self.execute_command('RPUSH', callbacks, key, value)
+    def rpush(self, key, *values, **kwargs):
+        callbacks = kwargs.pop('callbacks', None)
+        self.execute_command('RPUSH', callbacks, key, *values)
 
     def lpop(self, key, callbacks=None):
         self.execute_command('LPOP', callbacks, key)
@@ -701,11 +703,13 @@ class Client(object):
         self.execute_command('RPOPLPUSH', callbacks, src, dst)
 
     ### SET COMMANDS
-    def sadd(self, key, value, callbacks=None):
-        self.execute_command('SADD', callbacks, key, value)
+    def sadd(self, key, *values, **kwargs):
+        callbacks = kwargs.pop('callbacks', None)
+        self.execute_command('SADD', callbacks, key, *values)
 
-    def srem(self, key, value, callbacks=None):
-        self.execute_command('SREM', callbacks, key, value)
+    def srem(self, key, *values, **kwargs):
+        callbacks = kwargs.pop('callbacks', None)
+        self.execute_command('SREM', callbacks, key, *values)
 
     def scard(self, key, callbacks=None):
         self.execute_command('SCARD', callbacks, key)
