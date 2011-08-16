@@ -693,6 +693,12 @@ class Client(object):
         callbacks = kwargs.pop('callbacks', None)
         self.execute_command('RPUSH', callbacks, key, *values)
 
+    def rpushx(self, key, value, callbacks=None):
+        self.execute_command('RPUSHX', callbacks, key, value)
+
+    def lpushx(self, key, value, callbacks=None):
+        self.execute_command('LPUSHX', callbacks, key, value)
+
     def lpop(self, key, callbacks=None):
         self.execute_command('LPOP', callbacks, key)
 
